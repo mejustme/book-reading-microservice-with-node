@@ -29,6 +29,8 @@
 ### PM2
 [node应用执行管理器](http://pm2.keymetrics.io/)
 
+### Nodemon
+[node dev 修改后自动重启](https://www.npmjs.com/package/nodemon)
 
 ### 编写第一个微服务
 微电子商务-项目，集成Express与Seneca
@@ -72,7 +74,7 @@ SSH是SecureShell的简写，它是一款用于访问远程shell的软件
 - istanbul测试覆盖率
 
 ### 服务监测
-####硬件指标
+#### 硬件指标
 - 内存指标：该指标表明系统中剩余多少内存，或者我们的应用消耗了多少内存。
 - CPU使用率：正如其名，该指标表明在某一时间点我们使用了多少CPU。
 - 磁盘使用率：该指标表明了物理磁盘的I/O压力。

@@ -1,0 +1,23 @@
+{
+  "name": "book-reading-microservice-with-node",
+  "version": "1.0.0",
+  "description": "[亚马逊-传送门](https://www.amazon.cn/dp/B01MXY8ARP/ref=sr_1_1?ie=UTF8&qid=1517230090&sr=8-1&keywords=nodejs%E5%BE%AE%E6%9C%8D%E5%8A%A1)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./http-server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mejustme/book-reading-microservice-with-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mejustme/book-reading-microservice-with-node/issues"
+  },
+  "homepage": "https://github.com/mejustme/book-reading-microservice-with-node#readme",
+  "devDependencies": {
+    "nodemon": "^1.14.11"
+  }
+}
