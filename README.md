@@ -101,38 +101,40 @@ pm2结合Keymetrics(同作者、付费)，进行监控
 - nginx是一个专注于高并发与低内存消耗的Web服务器。
 默认情况下，主配置文件位于/etc/nginx/nginx.conf，
 ```js
-usernginx;
-worker_processes1;//用于服务请求的进程）的数量
-error_log/var/log/nginx/error.logwarn;
-pid/var/run/nginx.pid;
+user nginx;
+worker_processes 1;//用于服务请求的进程）的数量
+error_log /var/log/nginx/error.logwarn;
+pid /var/run/nginx.pid;
 events{
-	worker_connections1024;//单个worker可拥有的活跃连接数以及最后的HTTP配置。
+	worker_connections 1024;//单个worker可拥有的活跃连接数以及最后的HTTP配置。
 }
 http{
-	include/etc/nginx/mime.types;
-	default_typeapplication/octet-stream;
-	#gzipon;
-	include/etc/nginx/sites-enabled/*.conf;//有了这配置之后，任何在该指定目录下的以.conf结尾的文件都将成为NGINX配置的一部分。
+	include /etc/nginx/mime.types;
+	default_type application/octet-stream;
+	#gzip on;
+	include /etc/nginx/sites-enabled/*.conf;//有了这配置之后，任何在该指定目录下的以.conf结尾的文件都将成为NGINX配置的一部分。
 
 
 http{
 	upstreamapp{
-		roundrobin;//默认轮流分发
+		round robin;//默认轮流分发
 		//least_conn;最少连接数
 		//ip_hash;有状态时，iphash保证请求落到相同机器上，session可用
-		server10.0.0.1:3000;
-		server10.0.0.2:3000;
+		server 10.0.0.1:3000;
+		server 10.0.0.2:3000;
 	}
 	server{
-		listen80;
-		location/{
-		proxy_passhttp://app;
+		listen 80;
+		location / {
+		proxy_pass http://app;
 	}
 }
 }
+//检查配置
+sudo nginx -t
 
 //生效配置
-sudo/etc/init.d/nginxreload
+sudo /etc/init.d/nginx reload
 ```
 
 #### nginx健康检查
@@ -145,15 +147,15 @@ NGINX自带了两种类型的健康检查：
 #### 主动检查
 ```js
 http{
-	upstreamapp{
-		zoneapptest;//health_check后需加
-		server10.0.0.1:3000;
-		server10.0.0.2:3000;
+	upstream app {
+		zone app test;//health_check后需加
+		server 10.0.0.1:3000;
+		server 10.0.0.2:3000;
 	}
 	server{
-		listen80;
-		location/{
-			proxy_passhttp://app;
+		listen 80;
+		location / {
+			proxy_pass http://app;
 			health_check;//默认配置会每5秒向upstream配置项指定的主机和端口发起连接。
 		}
 	}
