@@ -100,7 +100,7 @@ pm2结合Keymetrics(同作者、付费)，进行监控
 ### 负载均衡Nginx
 - nginx是一个专注于高并发与低内存消耗的Web服务器。
 默认情况下，主配置文件位于/etc/nginx/nginx.conf，
-```js
+```nginx
 user nginx;
 worker_processes 1; #用于服务请求的进程）的数量
 error_log /var/log/nginx/error.logwarn;
@@ -117,7 +117,7 @@ http{
 
 http{
 	upstreamapp{
-		round robin; #默认轮流分发
+		#round robin; 默认轮流分发
 		#least_conn; 最少连接数
 		#ip_hash; 有状态时，iphash保证请求落到相同机器上，session可用
 		server 10.0.0.1:3000;
@@ -131,14 +131,14 @@ http{
 }
 }
 
-//检查配置
+#检查配置
 sudo nginx -t
 
-//启动nginx
+#启动nginx
 sudo nginx
 
-//生效配置
-sudo nginx -s reload  // -s signal stop, quit, reopen, reload
+#生效配置
+sudo nginx -s reload  # -s signal stop, quit, reopen, reload
 ```
 
 #### nginx健康检查
@@ -149,10 +149,10 @@ NGINX自带了两种类型的健康检查：
 
 
 #### 主动检查
-```js
+```nginx
 http{
 	upstream app {
-		zone app test; # health_check后需加
+		zone app test; #health_check后需加
 		server 10.0.0.1:3000;
 		server 10.0.0.2:3000;
 	}
